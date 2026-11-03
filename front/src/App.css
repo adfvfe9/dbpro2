@@ -1,0 +1,390 @@
+/* ===== 레이아웃 ===== */
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* ===== 공통 ===== */
+.muted {
+  color: var(--muted);
+}
+
+.error {
+  color: var(--error);
+  font-size: 14px;
+}
+
+.button {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-weight: 700;
+}
+
+.button.small {
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  color: inherit;
+}
+
+.input:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: -1px;
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+/* ===== 목록 ===== */
+.hero {
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.hero p {
+  color: var(--muted);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 14px;
+}
+
+.chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--primary-light);
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.tabs button.active {
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(111, 78, 55, 0.12);
+}
+
+.recipe-card .badge {
+  align-self: flex-start;
+}
+
+.recipe-card h3 {
+  font-size: 18px;
+}
+
+.recipe-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.likes {
+  color: var(--like);
+  font-weight: 700;
+}
+
+.author {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 60px 0;
+}
+
+/* ===== 상세 ===== */
+.detail {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail .badge {
+  align-self: flex-start;
+}
+
+.detail h1 {
+  font-size: 26px;
+}
+
+.detail h2 {
+  font-size: 16px;
+  margin: 16px 0 10px;
+}
+
+.back {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.price-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.price-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.price-list li:last-child {
+  border-bottom: none;
+}
+
+.price-list .quantity {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.price-list .total {
+  background: var(--primary-light);
+  font-weight: 800;
+  border-radius: 0 0 12px 12px;
+}
+
+.description {
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.like-button {
+  align-self: center;
+  margin-top: 20px;
+  background: var(--surface);
+  border: 1px solid var(--like);
+  color: var(--like);
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-weight: 700;
+}
+
+.like-button.liked {
+  background: var(--like);
+  color: #fff;
+}
+
+/* ===== 작성 / 로그인 폼 ===== */
+.form {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form.narrow {
+  max-width: 400px;
+}
+
+.form h1 {
+  font-size: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field > span {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.option-category {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.option-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.option-row.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stepper button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.stepper span {
+  min-width: 16px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.submit-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+
+.submit-bar strong {
+  font-size: 20px;
+}
