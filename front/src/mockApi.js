@@ -27,9 +27,10 @@ const options = [
   { optionId: 10, cafeId: 2, category: '토핑', optionName: '휘핑 추가', extraPrice: 500 },
 ];
 
+// 가짜 데이터라 비밀번호를 그대로 둠 (실제 서버는 암호화해서 저장)
 const users = [
-  { userId: 1, username: '커피러버' },
-  { userId: 2, username: '달달한하루' },
+  { userId: 1, username: '커피러버', password: 'password123' },
+  { userId: 2, username: '달달한하루', password: 'password123' },
 ];
 
 const recipes = [
@@ -58,6 +59,8 @@ const recipeOptions = [
   { recipeId: 3, optionId: 7, quantity: 1 },
   { recipeId: 3, optionId: 9, quantity: 1 },
 ];
+
+const images = [];
 
 const recipeLikes = [
   { userId: 2, recipeId: 1 },
@@ -92,6 +95,7 @@ function toRecipe(recipe, userId) {
     recipeId: recipe.recipeId,
     recipeName: recipe.recipeName,
     description: recipe.description,
+    imageUrl: recipe.imageUrl || null,
     createdAt: recipe.createdAt,
     cafeId: cafe.cafeId,
     cafeName: cafe.cafeName,
@@ -107,13 +111,19 @@ function toRecipe(recipe, userId) {
 }
 
 const mockApi = {
-  login(username) {
-    let user = users.find((u) => u.username === username);
-    if (!user) {
-      user = { userId: users.length + 1, username };
-      users.push(user);
+  signup(username, password) {
+    if (users.some((u) => u.username === username)) {
+      return fail('이미 사용 중인 닉네임이에요.');
     }
-    return respond(user);
+    const user = { userId: users.length + 1, username, password };
+    users.push(user);
+    return respond({ userId: user.userId, username });
+  },
+
+  login(username, password) {
+    const user = users.find((u) => u.username === username && u.password === password);
+    if (!user) return fail('닉네임 또는 비밀번호가 맞지 않아요.');
+    return respond({ userId: user.userId, username });
   },
 
   getCafes: () => respond(cafes),
@@ -135,13 +145,21 @@ const mockApi = {
     return recipe ? respond(toRecipe(recipe, userId)) : fail('레시피를 찾을 수 없어요.');
   },
 
-  createRecipe({ userId, drinkId, recipeName, description, options: picked }) {
+  // 서버에 올리는 대신 브라우저 안에서만 쓰는 임시 주소를 만들어둠
+  uploadImage(file) {
+    const imageId = images.length + 1;
+    images.push({ imageId, imageUrl: URL.createObjectURL(file) });
+    return respond(images[imageId - 1]);
+  },
+
+  createRecipe({ userId, drinkId, recipeName, description, imageId, options: picked }) {
     const recipe = {
       recipeId: recipes.length + 1,
       userId,
       drinkId,
       recipeName,
       description,
+      imageUrl: images.find((i) => i.imageId === imageId)?.imageUrl,
       createdAt: new Date().toISOString().slice(0, 19),
     };
     recipes.push(recipe);
